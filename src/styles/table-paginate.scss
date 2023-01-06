@@ -1,0 +1,135 @@
+.container {
+    width: 100%;
+}
+
+.sidebar {
+    float: left;
+    ul {
+        float: left;
+        li {
+            display: list-item;
+            border: none;
+        }
+    }
+    .active {
+        color: $myColor;
+    }
+}
+
+.table {
+    border-radius: 10px !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.table-sm> :not(add)>*>* {
+    padding: 0.50rem 0.50rem;
+}
+
+.table>thead {
+    background-color: rgba(235, 54, 26, 0.70);
+}
+
+.b-table-sticky-header,
+.table-responsive,
+[class*=table-responsive-] {
+    margin-bottom: 0;
+}
+
+.table-container {
+    max-height: 60vh;
+    // overflow-y: scroll;
+}
+
+.table {
+    // border: 1px solid black;
+    // border-top-left-radius: 6px;
+    // border-top-right-radius: 6px;
+    // border-bottom-left-radius: 6px;
+    // border-bottom-right-radius: 6px;
+    .add {
+        float: right;
+    }
+    .company-action {
+        margin: 0;
+        border: none;
+        background-color: inherit;
+        color: black;
+    }
+    .udpate-action {
+        margin: 0;
+        border: none;
+        background-color: inherit;
+        color: rgb(26, 117, 235);
+    }
+    .delete-action {
+        margin: 0;
+        border: none;
+        background-color: inherit;
+        color: rgba(235, 54, 26);
+    }
+}
+
+.input-errors {
+    //overflow: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.error-msg {
+    padding-left: 7px;
+    margin-top: -45px;
+    font-size: 11px;
+    float: left;
+    color: red;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.error {
+    border: 1px solid rgba(235, 54, 26, 0.83) !important;
+    box-shadow: 0 0 2px rgba(235, 54, 26, 0.83) !important;
+}
+
+.label {
+    float: left;
+    margin-left: 0.5rem;
+}
+
+::placeholder {
+    font-size: medium;
+    vertical-align: middle;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 5px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: rgb(117, 108, 108);
+    border-radius: 5px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 128, 128);
+}
