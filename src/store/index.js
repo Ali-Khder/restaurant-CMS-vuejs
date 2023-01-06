@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     res: localStorage.getItem('res') || {},
-    baseUrl: 'http://192.168.1.110:8081',
-    url: 'http://192.168.1.110:8081/api',
+    baseUrl: 'http://192.168.1.110:3030',
+    url: 'http://192.168.1.110:3030/api',
     token: localStorage.getItem('access_token') || null,
     user: localStorage.getItem('user_info') || {},
     status: localStorage.getItem('api_status') || null,

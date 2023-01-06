@@ -43,7 +43,7 @@ export default {
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
-      if (response.status) {
+      if (response.status === true) {
         this.$addNotification('success', 'success')
         await this.$store.dispatch('setToken', response.data.token)
         this.$router.push('/')

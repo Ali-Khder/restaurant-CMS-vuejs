@@ -2,40 +2,20 @@
   <div>
     <nav-bar />
     <div class="p-5">
-      <h2 class="title mb-5">Items</h2>
+      <h2 class="title mb-5">Articles</h2>
       <div class="table m-2">
         <div class="table-container">
           <b-table-simple hover small caption-top responsive>
             <b-thead head-variant="dark">
               <b-tr>
                 <b-th>id</b-th>
-                <b-th>name</b-th>
-                <b-th>speciality</b-th>
-                <b-th>price</b-th>
-                <b-th>owner's number</b-th>
-                <b-th></b-th>
+                <b-th>title</b-th>
               </b-tr>
             </b-thead>
             <b-tbody>
               <b-tr v-for="item in items" :key="item.id">
                 <b-td>{{ item.id }}</b-td>
-                <b-td>{{ item.name }}</b-td>
-                <b-td>{{ item.specialty }}</b-td>
-                <b-td>{{ item.price }}</b-td>
-                <b-td>{{ item.owner_number }}</b-td>
-                <b-td class="mb-0">
-                  <button class="udpate-action" v-b-modal.bv-modal-update @click="setMethod(item.id, item.name)">
-                    <p class="h5">
-                      <b-icon icon="pencil-square" class="rounded lg"></b-icon>
-                    </p>
-                  </button>
-                  <button class="delete-action" v-b-modal.bv-modal-delete
-                    @click="setMethod(item.id, item.name, item.companyID)">
-                    <p class="h5">
-                      <b-icon icon="x" class="rounded lg"></b-icon>
-                    </p>
-                  </button>
-                </b-td>
+                <b-td>{{ item.title }}</b-td>
               </b-tr>
             </b-tbody>
           </b-table-simple>
@@ -89,43 +69,19 @@
             Add new item
           </template>
           <div class="d-block text-center">
-            <addItem />
+            <addArticle />
           </div>
         </b-modal>
       </div>
-
-      <div id="update">
-        <b-modal id="bv-modal-update" hide-footer>
-          <template #modal-title>
-            Update item
-          </template>
-          <div class="d-block text-center">
-            <updateItem :id="this.id" />
-          </div>
-        </b-modal>
-      </div>
-
-      <div id="delete">
-        <b-modal id="bv-modal-delete" hide-footer>
-          <template #modal-title>
-            Delete item
-          </template>
-          <div class="d-block text-center">
-            <DeleteModal :id="this.id" :scope="'item'" :name="this.name" />
-          </div>
-        </b-modal>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-import addItem from '@/components/modals/adds/addItem.vue'
-import updateItem from '@/components/modals/updates/updateItem.vue'
+import addArticle from '@/components/modals/adds/addArticle.vue'
 export default {
-  name: 'ItemView',
-  components: { addItem, updateItem },
+  name: 'articleView',
+  components: { addArticle },
   data () {
     return {
       items: [],
@@ -146,17 +102,17 @@ export default {
   },
   methods: {
     async move (page) {
-      await this.$resource.resource(0, '/item?page=' + page)
+      await this.$resource.resource(0, '/articles?page=' + page)
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
       if (response.status) {
-        this.items = response.response.data
-        this.pages = response.response.last_page
-        this.current_page = response.response.current_page
-        this.last_page = response.response.last_page
+        this.items = response.data.data
+        this.pages = response.data.last_page
+        this.current_page = response.data.current_page
+        this.last_page = response.data.last_page
       } else {
-        this.$addNotification('danger', response.response)
+        this.$addNotification('danger', response.message)
       }
     },
     push (path) {
@@ -168,18 +124,18 @@ export default {
     }
   },
   async mounted () {
-    // await this.$resource.resource(0, '/item')
-    // await this.$store.dispatch('getRes')
-    // const response = JSON.parse(this.$store.state.res)
+    await this.$resource.resource(0, '/articles')
+    await this.$store.dispatch('getRes')
+    const response = JSON.parse(this.$store.state.res)
 
-    // if (response.status) {
-    //   this.items = response.response.data
-    //   this.pages = response.response.last_page
-    //   this.current_page = response.response.current_page
-    //   this.last_page = response.response.last_page
-    // } else {
-    //   this.$addNotification('danger', response.response)
-    // }
+    if (response.status) {
+      this.items = response.data.data
+      this.pages = response.data.last_page
+      this.current_page = response.data.current_page
+      this.last_page = response.data.last_page
+    } else {
+      this.$addNotification('danger', response.message)
+    }
   }
 }
 </script>
