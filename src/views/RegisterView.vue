@@ -16,6 +16,7 @@
           <div v-else>logging...</div>
         </button>
         <button class="login mt-3" @click.prevent="login">You Have An Account?</button>
+        <button class="login mt-3" @click.prevent="guest">Guest Page</button>
       </form>
     </div>
   </div>
@@ -33,6 +34,9 @@ export default {
     }
   },
   methods: {
+    guest () {
+      this.$router.push('/guest')
+    },
     login () {
       this.$router.push('/login')
     },

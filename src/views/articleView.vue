@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     async move (page) {
-      await this.$resource.resource(0, '/articles?page=' + page)
+      await this.$resource.resource(0, '/admin/articles?page=' + page)
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
@@ -124,7 +124,7 @@ export default {
     }
   },
   async mounted () {
-    await this.$resource.resource(0, '/articles')
+    await this.$resource.resource(0, '/admin/articles')
     await this.$store.dispatch('getRes')
     const response = JSON.parse(this.$store.state.res)
 

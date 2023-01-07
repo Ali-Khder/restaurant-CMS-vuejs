@@ -5,6 +5,11 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [{
+  path: '/guest',
+  name: 'guest',
+  component: () =>
+    import('../views/GuestView.vue')
+}, {
   path: '/login',
   name: 'login',
   component: () =>
@@ -31,12 +36,13 @@ router.beforeEach(async (to, from, next) => {
   store.dispatch('getToken')
   const token = store.state.token
 
-  const publicPages = ['/login', '/register']
+  const publicPages = ['/login', '/register', '/guest']
   const authReaquired = !publicPages.includes(to.path)
   console.log(authReaquired)
   console.log(from.path)
 
-  if (to.path === '/register' || to.path === '/login') { next() }
+  if (to.path === '/register' || to.path === '/login' ||
+        to.path === '/guest') { next() }
 
   if (authReaquired && !token) {
     console.log('not logged')

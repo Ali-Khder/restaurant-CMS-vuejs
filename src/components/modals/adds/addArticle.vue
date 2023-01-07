@@ -60,12 +60,12 @@ export default {
       const fd = new FormData()
       fd.append('title', this.title)
       fd.append('text', this.content.text)
-      await this.$resource.resource(1, '/articles', fd)
+      await this.$resource.resource(1, '/admin/articles', fd)
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
       if (response.status) {
         this.$addNotification('success', 'success')
-        // this.$router.go()
+        this.$router.go()
       } else {
         this.$addNotification('danger', response.message)
       }

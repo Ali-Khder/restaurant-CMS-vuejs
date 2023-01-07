@@ -10,13 +10,16 @@ async function resource (type, api, body = null) {
       .get(`${store.state.url}${api}`)
       .then((response) => {
         console.log(response.data)
+        // JSON.parse(response)
         store.dispatch('setRes', response.data)
       })
       .catch((error) => {
+        console.log(error)
         if (error.response.status === 401 || error.response.status === 403) {
-          this.$router.push({ name: 'login' })
+          router.push({ name: 'login' })
           localStorage.clear()
         } else {
+          console.log(error.response)
           store.dispatch('setRes', error.response)
         }
       })
