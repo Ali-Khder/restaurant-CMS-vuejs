@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <div class="div-title row d-flex justify-content-center align-content-center">
-      <h1 class="login-title">MVP<span class="primary-color">CMS</span></h1>
+      <h1 class="login-title">Restaurant<span class="primary-color">CMS</span></h1>
     </div>
     <div class="form">
       <form class="login-form">

@@ -5,11 +5,6 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/guest',
-  name: 'guest',
-  component: () =>
-    import('../views/GuestView.vue')
-}, {
   path: '/login',
   name: 'login',
   component: () =>
