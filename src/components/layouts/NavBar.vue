@@ -1,5 +1,6 @@
 <template>
   <div class="header m-2">
+    <side-bar />
     <div class="logout">
       <button class="udpate-action" v-b-modal.bv-modal-logout>
         <p class="icon h5">

@@ -18,7 +18,17 @@ const routes = [{
   path: '/',
   name: 'home',
   component: () =>
-    import('../views/articleView.vue')
+    import('../views/menuView.vue')
+}, {
+  path: '/categories',
+  name: 'categories',
+  component: () =>
+    import('../views/categoryView.vue')
+}, {
+  path: '/items',
+  name: 'items',
+  component: () =>
+    import('../views/itemsView.vue')
 }]
 
 const router = new VueRouter({

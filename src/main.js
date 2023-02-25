@@ -24,14 +24,16 @@ import { faAdd, faList, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import notificationComponent from '@/components/notifications/notificationComponent'
 import NavBar from '@/components/layouts/NavBar'
-// import DeleteModal from '@/components/modals/DeleteModal'
+import sideBar from '@/components/layouts/sideBar'
+import DeleteModal from '@/components/modals/DeleteModal'
 
 library.add(faAdd, faList, faSignOut)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('BIconPencilSquare', BIconPencilSquare)
 Vue.component('notificationComponent', notificationComponent)
 Vue.component('NavBar', NavBar)
-// Vue.component('DeleteModal', DeleteModal)
+Vue.component('sideBar', sideBar)
+Vue.component('DeleteModal', DeleteModal)
 
 // Vue.config.productionTip = false
 Vue.prototype.$setAuthHeader = setAuthHeader
