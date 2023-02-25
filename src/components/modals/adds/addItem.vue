@@ -32,6 +32,7 @@ export default {
       categories: [],
       name: '',
       discount: 0,
+      category: 0,
       price: 0
     }
   },

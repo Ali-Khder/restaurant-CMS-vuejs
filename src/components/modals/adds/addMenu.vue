@@ -1,13 +1,15 @@
 <template>
   <!-- <div class="popup"> -->
   <div class="popup-inner">
-    <slot />
+    <slot/>
     <div>
       <label class="label mb-2">Name</label>
       <input type="text" class="mb-2" v-model="name" placeholder="Name">
 
       <label class="label mb-2">Categories</label>
-      <b-form-select multiple class="form-control form-control mb-2" v-model="menuCategoies" :options="this.categories"></b-form-select>
+      <b-form-select multiple class="form-control form-control mb-2"
+                     v-model="menuCategories"
+                     :options="this.categories"></b-form-select>
     </div>
     <div class="buttons">
       <b-button class="save primary-back mt-2" variant="success" @click="add()">
@@ -24,7 +26,7 @@ export default {
   data () {
     return {
       categories: [],
-      menuCategoies: [],
+      menuCategories: [],
       name: '',
       discount: 0,
       parent: 0
@@ -35,14 +37,18 @@ export default {
       const fd = new FormData()
       fd.append('name', this.name)
       fd.append('discount', this.discount)
-      fd.append('parent_id', this.parent)
-      await this.$resource.resource(1, '/categories', fd)
+      if (this.menuCategories.length !== 0) {
+        for (let i = 0; i < this.menuCategories.length; i++) {
+          fd.append(`category[${i}]`, this.menuCategories[i])
+        }
+      }
+      await this.$resource.resource(1, '/menus', fd)
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
-      if (response.status) {
+      if (response.status === true) {
         // console.log(response.message)
-        this.$addNotification('success', 'success')
+        this.$addNotification('success', response.message)
         this.$router.go()
       } else {
         this.$addNotification('danger', response.message)

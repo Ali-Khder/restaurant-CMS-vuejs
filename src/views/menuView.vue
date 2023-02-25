@@ -96,7 +96,7 @@
             Update item
           </template>
           <div class="d-block text-center">
-            <updateItem :id="this.id" />
+            <updateMenu :id="this.id" />
           </div>
         </b-modal>
       </div>
@@ -117,9 +117,10 @@
 
 <script>
 import addMenu from '@/components/modals/adds/addMenu.vue'
+import updateMenu from '@/components/modals/updates/updateMenu.vue'
 export default {
   name: 'menuView',
-  components: { addMenu },
+  components: { addMenu, updateMenu },
   data () {
     return {
       items: [],
