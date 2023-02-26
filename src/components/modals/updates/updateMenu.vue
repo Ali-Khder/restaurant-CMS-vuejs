@@ -13,7 +13,7 @@
                      v-model="deleteCategories"
                      :options="this.menuCategories"></b-form-select>
 
-      <label class="label mb-2">All Categories, choose to add</label>
+      <label class="label mb-2">All Categories, choose to update</label>
       <b-form-select multiple class="form-control form-control mb-2"
                      v-model="newCategories"
                      :options="this.categories"></b-form-select>

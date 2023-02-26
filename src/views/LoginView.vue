@@ -44,7 +44,7 @@ export default {
       const response = JSON.parse(this.$store.state.res)
 
       if (response.status === true) {
-        this.$addNotification('success', 'success')
+        this.$addNotification('success', response.message)
         await this.$store.dispatch('setToken', response.data.token)
         this.$router.push('/')
       } else {

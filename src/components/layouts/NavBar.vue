@@ -1,6 +1,6 @@
 <template>
   <div class="header m-2">
-    <side-bar />
+    <side-bar/>
     <div class="logout">
       <button class="udpate-action" v-b-modal.bv-modal-logout>
         <p class="icon h5">
@@ -9,21 +9,21 @@
         </p>
       </button>
     </div>
-      <div id="logout">
-        <b-modal id="bv-modal-logout" hide-footer>
-          <template #modal-title>
-            Logout from CMS
-          </template>
-          <div class="d-block text-center">
-            <h4 class="popup-title">Are you sure?</h4>
-            <div class="buttons" style="float: right;">
-              <b-button class="save primary-back mt-2" variant="danger" @click="logout()">
-                <div>Logout</div>
-              </b-button>
-            </div>
+    <div id="logout">
+      <b-modal id="bv-modal-logout" hide-footer>
+        <template #modal-title>
+          Logout from CMS
+        </template>
+        <div class="d-block text-center">
+          <h4 class="popup-title">Are you sure?</h4>
+          <div class="buttons" style="float: right;">
+            <b-button class="save primary-back mt-2" variant="danger" @click="logout()">
+              <div>Logout</div>
+            </b-button>
           </div>
-        </b-modal>
-      </div>
+        </div>
+      </b-modal>
+    </div>
   </div>
 </template>
 

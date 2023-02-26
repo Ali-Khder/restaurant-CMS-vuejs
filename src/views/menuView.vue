@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar />
+    <nav-bar/>
     <div class="p-5">
       <h2 class="title mb-5">Menu</h2>
       <div class="table m-2">
@@ -26,7 +26,7 @@
                     </p>
                   </button>
                   <button class="delete-action" v-b-modal.bv-modal-delete
-                    @click="setMethod(item.id, item.name, item.companyID)">
+                          @click="setMethod(item.id, item.name)">
                     <p class="h5">
                       <b-icon icon="x" class="rounded lg"></b-icon>
                     </p>
@@ -39,12 +39,12 @@
             <ul>
               <li>
                 <button class="pagination-btn changer" :disabled="isPrevious"
-                @click="move(1)">&lt;&lt;
+                        @click="move(1)">&lt;&lt;
                 </button>
               </li>
               <li>
                 <button class="pagination-btn changer" :disabled="isPrevious"
-                @click="move(current_page - 1)">&lt;
+                        @click="move(current_page - 1)">&lt;
                 </button>
               </li>
               <li>
@@ -54,13 +54,13 @@
               </li>
               <li>
                 <button class="pagination-btn" v-if="this.current_page + 1 <= this.pages"
-                  @click="move(current_page + 1)">
+                        @click="move(current_page + 1)">
                   {{ this.current_page + 1 }}
                 </button>
               </li>
               <li>
                 <button class="pagination-btn" v-if="this.current_page + 2 <= this.pages"
-                  @click="move(current_page + 2)">
+                        @click="move(current_page + 2)">
                   {{ this.current_page + 2 }}
                 </button>
               </li>
@@ -76,7 +76,7 @@
           </div>
         </div>
         <b-button v-b-modal.bv-modal-add class="add mt-5" variant="outline-success">
-          <font-awesome-icon icon="add" />
+          <font-awesome-icon icon="add"/>
         </b-button>
       </div>
       <div id="add">
@@ -85,7 +85,7 @@
             Add new item
           </template>
           <div class="d-block text-center">
-            <addMenu />
+            <addMenu/>
           </div>
         </b-modal>
       </div>
@@ -96,18 +96,19 @@
             Update item
           </template>
           <div class="d-block text-center">
-            <updateMenu :id="this.id" />
+            <updateMenu :id="this.id"/>
           </div>
         </b-modal>
       </div>
 
       <div id="delete">
-        <b-modal id="bv-modal-delete" hide-footer>
+        <b-modal id="bv-modal-delete" hide-footer ref="thisModal">
           <template #modal-title>
             Delete item
           </template>
           <div class="d-block text-center">
-            <DeleteModal :id="this.id" :scope="'menus'" :name="this.name" />
+            <DeleteModal :id="this.id" :scope="'menus'" :name="this.name"
+                         @delete="deleteAction()"/>
           </div>
         </b-modal>
       </div>
@@ -120,7 +121,10 @@ import addMenu from '@/components/modals/adds/addMenu.vue'
 import updateMenu from '@/components/modals/updates/updateMenu.vue'
 export default {
   name: 'menuView',
-  components: { addMenu, updateMenu },
+  components: {
+    addMenu,
+    updateMenu
+  },
   data () {
     return {
       items: [],
@@ -140,6 +144,10 @@ export default {
     }
   },
   methods: {
+    deleteAction: function () {
+      this.modalDeleteShown = false
+      this.move(this.$route.params.page)
+    },
     async move (page) {
       await this.$resource.resource(0, '/menus?page=' + page)
       await this.$store.dispatch('getRes')
@@ -157,7 +165,10 @@ export default {
     push (path) {
       this.$router.push(path)
     },
-    setMethod (id, name) {
+    setMethod (id, name, key) {
+      if (key === 0) {
+        this.modalDeleteShown = true
+      }
       this.id = id
       this.name = name
     }

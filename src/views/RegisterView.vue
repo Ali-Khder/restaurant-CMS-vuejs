@@ -16,7 +16,6 @@
           <div v-else>logging...</div>
         </button>
         <button class="login mt-3" @click.prevent="login">You Have An Account?</button>
-        <button class="login mt-3" @click.prevent="guest">Guest Page</button>
       </form>
     </div>
   </div>
@@ -34,9 +33,6 @@ export default {
     }
   },
   methods: {
-    guest () {
-      this.$router.push('/guest')
-    },
     login () {
       this.$router.push('/login')
     },
@@ -51,8 +47,8 @@ export default {
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
-      if (response.status) {
-        this.$addNotification('success', 'success')
+      if (response.status === true) {
+        this.$addNotification('success', response.message)
         await this.$store.dispatch('setToken', response.data.token)
         this.$router.push('/')
       } else {

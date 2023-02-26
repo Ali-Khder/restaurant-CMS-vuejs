@@ -27,12 +27,13 @@ export default {
       await this.$store.dispatch('getRes')
       const response = JSON.parse(this.$store.state.res)
 
-      if (response.status) {
+      if (response.status === true) {
         // console.log(response.message)
-        this.$addNotification('success', 'success')
+        this.$addNotification('success', response.message)
+        this.$emit('delete')
         this.$router.go()
       } else {
-        this.$addNotification('danger', response.response)
+        this.$addNotification('danger', response.message)
       }
     }
   }
