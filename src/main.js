@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
-import Editor from 'vue-editor-js/src/index'
 import {
   BootstrapVue,
   BootstrapVueIcons,
@@ -14,7 +13,6 @@ import VueCompositionAPI from '@vue/composition-api'
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import Vuelidate from '@vuelidate/core'
 import setAuthHeader from './services/setAuthHeader'
 import resource from './services/resourceAPI'
 import addNotification from './services/addNotification'
@@ -44,8 +42,6 @@ Vue.prototype.$axios = axios
 Vue.use(BootstrapVue)
   .use(BootstrapVueIcons)
   .use(VueCompositionAPI)
-  .use(Vuelidate)
-  .use(Editor)
 
 new Vue({
   router,
